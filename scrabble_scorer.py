@@ -21,15 +21,6 @@ def old_scrabble_scorer(word):
 				letterPoints += 'Points for {char}: {point_value}\n'.format(char = char, point_value = point_value)
 	return letterPoints
 
-def transform(dict):
-	new_dict = {}
-	new_dict[" "] = 0
-	for key in dict:
-		for char in (dict[key]):
-			new_dict[char.lower()] = key
-	return new_dict
-
-new_point_structure = transform(OLD_POINT_STRUCTURE)
 # your job is to finish writing these functions and variables that we've named
 # don't change the names or your program won't work as expected.
 
@@ -44,6 +35,7 @@ def initial_prompt():
 			print("Please enter a valid word.")
 			user_word = input("Please enter a word to be scored: ")
 	return user_word
+
 
 def simple_scorer(word):
 	word = word.replace(" ", "") 
@@ -98,6 +90,15 @@ def scorer_prompt(word):
 	user_choice = int(user_choice)
 	print(f"Score for '{word}': {scoring_algorithms[user_choice]['scoring_function'](word)}")
 
+def transform(dict):
+	new_dict = {}
+	new_dict[" "] = 0
+	for key in dict:
+		for char in (dict[key]):
+			new_dict[char.lower()] = key
+	return new_dict
+
+new_point_structure = transform(OLD_POINT_STRUCTURE)
 
 def run_program():
 	word = initial_prompt()
