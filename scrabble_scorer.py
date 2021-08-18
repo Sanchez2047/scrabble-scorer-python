@@ -37,7 +37,7 @@ new_point_structure = transform(OLD_POINT_STRUCTURE)
 def initial_prompt():
 	print("Let's play some Scrabble!\n")
 	user_word = input("Please enter a word to be scored: ")
-	while user_word == "" or user_word == None:
+	while user_word == "":
 		print("Please enter a valid word.")
 		user_word = input("Please enter a word to be scored: ")
 	for i in range(len(user_word)):
@@ -93,7 +93,7 @@ def scorer_prompt(word):
 	for i in range(len(scoring_algorithms)):
 		print(f"{i} - {scoring_algorithms[i]['name']}: {scoring_algorithms[i]['description']}")	
 	user_choice = (input("Enter 0, 1, or 2: "))
-	while user_choice == None or user_choice not in string.digits or int(user_choice) < 0 or int(user_choice) > 2:
+	while user_choice == "" or user_choice not in string.digits or int(user_choice) < 0 or int(user_choice) > 2:
 		print("Please enter a valid option")
 		user_choice = (input("Enter 0, 1, or 2: "))
 	user_choice = int(user_choice)

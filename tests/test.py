@@ -12,23 +12,23 @@ class TestScrabbleScorer(unittest.TestCase):
 	## transform tests ##
 
 	def test_transform_returns_an_object(self):
-		transformed_obj = transform(old_point_structure)
+		transformed_obj = transform(OLD_POINT_STRUCTURE)
 		self.assertIs(type(transformed_obj), dict)
 
 	def test_transform_returns_a_dict_that_is_not_empty(self):
-		transformed_obj = transform(old_point_structure)
+		transformed_obj = transform(OLD_POINT_STRUCTURE)
 		self.assertNotEqual(transformed_obj.keys(), {}.keys())
 		self.assertNotEqual(len(transformed_obj.keys()), 0)
 
 	# is there a better way to write this one?
 	def test_transform_returns_a_dict_with_letter_keys(self):
-		transformed_obj = transform(old_point_structure)
+		transformed_obj = transform(OLD_POINT_STRUCTURE)
 		letter_keys = list(transformed_obj.keys())
 		letters_ex = re.findall('[a-z]', str(letter_keys))
 		self.assertEqual(len(letters_ex), len(letter_keys))
 
 	def test_transform_returns_a_dict_with_integer_values(self):
-		transformed_obj = transform(old_point_structure)
+		transformed_obj = transform(OLD_POINT_STRUCTURE)
 		int_vals = transformed_obj.values()
 		for val in int_vals:
 			self.assertEqual(type(val), int)
@@ -120,9 +120,9 @@ class TestScrabbleScorer(unittest.TestCase):
 		self.assertEqual(len(scoring_algorithms), 3)
 
 	def test_scoring_algorithms_contain_three_scoring_objects(self):
-		self.assertTrue(scoring_algorithms[0]['scorer_function'] == simple_scorer)
-		self.assertTrue(scoring_algorithms[1]['scorer_function'] == vowel_bonus_scorer)
-		self.assertTrue(scoring_algorithms[2]['scorer_function'] == scrabble_scorer)
+		self.assertTrue(scoring_algorithms[0]['scoring_function'] == simple_scorer)
+		self.assertTrue(scoring_algorithms[1]['scoring_function'] == vowel_bonus_scorer)
+		self.assertTrue(scoring_algorithms[2]['scoring_function'] == scrabble_scorer)
 
 if __name__ == '__main__':
 	unittest.main()
