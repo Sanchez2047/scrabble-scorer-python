@@ -67,37 +67,35 @@ def scrabble_scorer(word):
 		total += new_point_structure[char.lower()]
 	return total
 
-scoring_algorithms = ()
-simple_scorer_dict = {
+scoring_algorithms = (
+	{
 	"name" : "Simple Score",
 	"description" : "Each letter is worth 1 point.",
 	"scoring_function" : simple_scorer 
-} 
-vowel_bonus_scorer_dict = {
+	},
+	{ 
 	"name" : "Bonus Vowels",
 	"description" : "Vowels are 3 pts, consonants are 1 pt.",
 	"scoring_function" : vowel_bonus_scorer
-}
-old_scrabble_scorer_dict = {
+	},
+	{
 	"name" : "Scrabble",
 	"description" : "The traditional scoring algorithm.	",
-	"scoring_function" : scrabble_scorer 
-} 
-
-scoring_algorithms = list(scoring_algorithms)
-scoring_algorithms.append(simple_scorer_dict)
-scoring_algorithms.append(vowel_bonus_scorer_dict)
-scoring_algorithms.append(old_scrabble_scorer_dict)
-scoring_algorithms = tuple(scoring_algorithms)
+	"scoring_function" : scrabble_scorer
+	})
 
 def scorer_prompt(word):
 	print("Which scoring algorirthm would you like to use?\n")
+
 	for i in range(len(scoring_algorithms)):
 		print(f"{i} - {scoring_algorithms[i]['name']}: {scoring_algorithms[i]['description']}")	
+
 	user_choice = (input("Enter 0, 1, or 2: "))
+
 	while user_choice == "" or user_choice not in string.digits or int(user_choice) < 0 or int(user_choice) > 2:
 		print("Please enter a valid option")
 		user_choice = (input("Enter 0, 1, or 2: "))
+
 	user_choice = int(user_choice)
 	print(f"Score for '{word}': {scoring_algorithms[user_choice]['scoring_function'](word)}")
 	
