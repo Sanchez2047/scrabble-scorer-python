@@ -46,12 +46,14 @@ def initial_prompt():
 			user_word = input("Please enter a word to be scored: ")
 	return user_word
 
-def simple_scorer(word): 
+def simple_scorer(word):
+	word = word.replace(" ", "") 
 	return len(word)
 
 def vowel_bonus_scorer(word):
 	vowels = ["A","E","I","O","U"]
 	total = 0
+	word = word.replace(" ", "")
 	for char in word:
 		if char.upper() not in vowels:
 			total += 1
